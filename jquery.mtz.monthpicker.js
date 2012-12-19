@@ -94,6 +94,19 @@
                         $this.monthpicker('setValue', settings);
                         $this.monthpicker('hide');
                     });
+                    
+                    $this.keydown(function(event) {
+                        if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 27 || event.keyCode == 13 || (event.keyCode >= 35 && event.keyCode <= 39) || (event.ctrlKey === true && (event.keyCode == 65 || event.keyCode == 86 || event.keyCode == 67)) ) {
+                            if (event.keyCode == 27 || event.keyCode == 13) {
+                                $this.monthpicker('hide');
+                            }
+                            return;
+                        } else {
+                            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                                event.preventDefault();
+                            }
+                        }
+                    });
 
                     // hide widget when user clicks elsewhere on page
                     $this.addClass("mtz-monthpicker-widgetcontainer");
